@@ -1,5 +1,5 @@
 name: Fiendish
-main: com.nao20010128nao.Fiendish.PluginMain
+main: com.nao20010128nao.Fiendish.LemiHell
 version: "1.0.0"
 api: [1.0.0]
 load: STARTUP
