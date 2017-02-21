@@ -4,7 +4,9 @@ import cn.nukkit.block.Block
 import cn.nukkit.block.Block as blk
 import cn.nukkit.block.BlockIce
 import cn.nukkit.block.BlockLiquid
+import cn.nukkit.event.EventHandler
 import cn.nukkit.event.Listener
+import cn.nukkit.event.block.BlockBreakEvent
 import cn.nukkit.plugin.PluginBase
 import com.nao20010128nao.Fiendish.blocks.*
 
@@ -105,5 +107,10 @@ class LemiHell extends PluginBase implements Listener{
         blk::$list[blk::REDSTONE_ORE         ]=\nao20010128nao\blocks\RedstoneOre        ::class;
         blk::$list[blk::SAPLING              ]=\nao20010128nao\blocks\Sapling            ::class;
         */
+    }
+
+    @EventHandler
+    void onBlockBreak(BlockBreakEvent ev){
+        ev.drops=Utils.intArrayArrayToItems(Block.get(ev.block.id,ev.block.damage).getDrops(ev.item))
     }
 }

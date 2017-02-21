@@ -8,7 +8,7 @@ import java.security.SecureRandom
  * Created by nao on 2017/02/21.
  */
 class Utils {
-    static final ThreadLocal<SecureRandom> random=new ThreadLocal<>()
+    static final ThreadLocal<SecureRandom> random=ThreadLocal.withInitial({new SecureRandom()})
     static int[][] createOreDrops(Item item,int leastTier,int itemId,int itemDamage=0){
         if(item.tier>= leastTier){
             def rand=PhpMethods.mt_rand(1,20)
@@ -51,5 +51,21 @@ class Utils {
         }else{
             return []
         }
+    }
+
+    static int[][] itemsToIntArrayArray(Item[] items){
+        def result=[]
+        items.each {
+            result+=[it.id,it.damage,it.count]
+        }
+        return result
+    }
+
+    static Item[] intArrayArrayToItems(int[][] arrays){
+        def result=[]
+        arrays.each {
+            result+=Item.get(it[0],it[1],it[2])
+        }
+        return result
     }
 }

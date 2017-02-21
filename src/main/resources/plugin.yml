@@ -7,3 +7,4 @@ author: nao20010128nao
 authors: [nao20010128nao]
 description: The fiendish-server plugin
 website: http://localhost/
+depend: [NukkitDepLoader]
