@@ -8,6 +8,8 @@ import com.nao20010128nao.Fiendish.level.UnpreventableExplosion
  * Created by nao on 2017/02/21.
  */
 class LemiHellMonsterSpawner extends BlockMobSpawner{
+    LemiHellMonsterSpawner(int meta=0){super(meta)}
+
     @Override
     boolean onBreak(Item item) {
         // TODO: This shouldn't happen always, but sometimes.

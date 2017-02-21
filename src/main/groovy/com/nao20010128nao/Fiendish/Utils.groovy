@@ -1,7 +1,6 @@
 package com.nao20010128nao.Fiendish
 
 import cn.nukkit.item.Item
-import cn.nukkit.item.ItemTool
 
 import java.security.SecureRandom
 

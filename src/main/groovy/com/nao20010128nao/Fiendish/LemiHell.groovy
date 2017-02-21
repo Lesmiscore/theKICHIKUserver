@@ -1,28 +1,12 @@
 package com.nao20010128nao.Fiendish
 
+import cn.nukkit.block.Block
+import cn.nukkit.block.Block as blk
+import cn.nukkit.block.BlockIce
+import cn.nukkit.block.BlockLiquid
 import cn.nukkit.event.Listener
 import cn.nukkit.plugin.PluginBase
-import cn.nukkit.block.Block as blk
-import com.nao20010128nao.Fiendish.blocks.LemiHellCoal
-import com.nao20010128nao.Fiendish.blocks.LemiHellCoalOre
-import com.nao20010128nao.Fiendish.blocks.LemiHellCobweb
-import com.nao20010128nao.Fiendish.blocks.LemiHellDiamond
-import com.nao20010128nao.Fiendish.blocks.LemiHellEmerald
-import com.nao20010128nao.Fiendish.blocks.LemiHellEmeraldOre
-import com.nao20010128nao.Fiendish.blocks.LemiHellGlass
-import com.nao20010128nao.Fiendish.blocks.LemiHellGlassPane
-import com.nao20010128nao.Fiendish.blocks.LemiHellGlowingRedstoneOre
-import com.nao20010128nao.Fiendish.blocks.LemiHellGold
-import com.nao20010128nao.Fiendish.blocks.LemiHellGoldOre
-import com.nao20010128nao.Fiendish.blocks.LemiHellIron
-import com.nao20010128nao.Fiendish.blocks.LemiHellIronOre
-import com.nao20010128nao.Fiendish.blocks.LemiHellLapis
-import com.nao20010128nao.Fiendish.blocks.LemiHellLapisOre
-import com.nao20010128nao.Fiendish.blocks.LemiHellLeaves
-import com.nao20010128nao.Fiendish.blocks.LemiHellLeaves2
-import com.nao20010128nao.Fiendish.blocks.LemiHellMonsterSpawner
-import com.nao20010128nao.Fiendish.blocks.LemiHellRedstoneOre
-import com.nao20010128nao.Fiendish.blocks.LemiHellSapling
+import com.nao20010128nao.Fiendish.blocks.*
 
 // Use this name here used at the original plugin
 class LemiHell extends PluginBase implements Listener{
@@ -49,27 +33,56 @@ class LemiHell extends PluginBase implements Listener{
     void initAllBlocks(){
         blk.init()
 
-        // TODO: Overwrite fullList, to apply changes
-        blk.list[blk.COAL_BLOCK]=LemiHellCoal.class
-        blk.list[blk.COAL_ORE]=LemiHellCoalOre.class
-        blk.list[blk.COBWEB]=LemiHellCobweb.class
-        blk.list[blk.DIAMOND_BLOCK]=LemiHellDiamond.class
-        blk.list[blk.EMERALD_BLOCK]=LemiHellEmerald.class
-        blk.list[blk.EMERALD_ORE]=LemiHellEmeraldOre.class
-        blk.list[blk.GLASS]=LemiHellGlass.class
-        blk.list[blk.GLASS_PANE]=LemiHellGlassPane.class
-        blk.list[blk.GLOWING_REDSTONE_ORE]=LemiHellGlowingRedstoneOre.class
-        blk.list[blk.GOLD_BLOCK]=LemiHellGold.class
-        blk.list[blk.GOLD_ORE]=LemiHellGoldOre.class
-        blk.list[blk.IRON_BLOCK]=LemiHellIron.class
-        blk.list[blk.IRON_ORE]=LemiHellIronOre.class
-        blk.list[blk.LAPIS_BLOCK]=LemiHellLapis.class
-        blk.list[blk.LAPIS_ORE]=LemiHellLapisOre.class
-        blk.list[blk.LEAVES]=LemiHellLeaves.class
-        blk.list[blk.LEAVES2]=LemiHellLeaves2.class
-        blk.list[blk.MONSTER_SPAWNER]=LemiHellMonsterSpawner.class
-        blk.list[blk.REDSTONE_ORE]=LemiHellRedstoneOre.class
-        blk.list[blk.SAPLING]=LemiHellSapling.class
+        Map<Integer,Class<? extends Block>> override=[:]
+        override[blk.COAL_BLOCK]=LemiHellCoal.class
+        override[blk.COAL_ORE]=LemiHellCoalOre.class
+        override[blk.COBWEB]=LemiHellCobweb.class
+        override[blk.DIAMOND_BLOCK]=LemiHellDiamond.class
+        override[blk.EMERALD_BLOCK]=LemiHellEmerald.class
+        override[blk.EMERALD_ORE]=LemiHellEmeraldOre.class
+        override[blk.GLASS]=LemiHellGlass.class
+        override[blk.GLASS_PANE]=LemiHellGlassPane.class
+        override[blk.GLOWING_REDSTONE_ORE]=LemiHellGlowingRedstoneOre.class
+        override[blk.GOLD_BLOCK]=LemiHellGold.class
+        override[blk.GOLD_ORE]=LemiHellGoldOre.class
+        override[blk.IRON_BLOCK]=LemiHellIron.class
+        override[blk.IRON_ORE]=LemiHellIronOre.class
+        override[blk.LAPIS_BLOCK]=LemiHellLapis.class
+        override[blk.LAPIS_ORE]=LemiHellLapisOre.class
+        override[blk.LEAVES]=LemiHellLeaves.class
+        override[blk.LEAVES2]=LemiHellLeaves2.class
+        override[blk.MONSTER_SPAWNER]=LemiHellMonsterSpawner.class
+        override[blk.REDSTONE_ORE]=LemiHellRedstoneOre.class
+        override[blk.SAPLING]=LemiHellSapling.class
+
+        // change all the blocks this plugin overrides
+        override.entrySet().each {
+            blk.list[it.key]=it.value
+            def e = it.value.getDeclaredConstructor(Integer.TYPE)
+            e.accessible=true
+            0..15.each {d->
+                blk.fullList[it.key<<4 | d]= e.newInstance(d)
+            }
+            def defaultBlock=it.value.newInstance()
+            blk.solid[it.key] = defaultBlock.solid
+            blk.transparent[it.key] = defaultBlock.transparent
+            blk.hardness[it.key] = defaultBlock.hardness
+            blk.light[it.key] = defaultBlock.lightLevel
+            if(defaultBlock.solid) {
+                if(defaultBlock.transparent) {
+                    if(!(defaultBlock instanceof BlockLiquid) && !(defaultBlock instanceof BlockIce)) {
+                        blk.lightFilter[it.key] = 1
+                    } else {
+                        blk.lightFilter[it.key] = 2
+                    }
+                } else {
+                    blk.lightFilter[it.key] = 15
+                }
+            } else {
+                blk.lightFilter[it.key] = 1
+            }
+        }
+
         /* original code:
         blk::$list[blk::COAL_BLOCK           ]=\nao20010128nao\blocks\Coal               ::class;
         blk::$list[blk::COAL_ORE             ]=\nao20010128nao\blocks\CoalOre            ::class;

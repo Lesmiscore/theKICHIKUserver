@@ -10,6 +10,8 @@ import com.nao20010128nao.Fiendish.level.UnpreventableExplosion
  * Created by nao on 2017/02/20.
  */
 class LemiHellGlowingRedstoneOre extends BlockOreRedstoneGlowing{
+    LemiHellGlowingRedstoneOre(int meta=0){super(meta)}
+
     @Override
     int getLightLevel() {
         9

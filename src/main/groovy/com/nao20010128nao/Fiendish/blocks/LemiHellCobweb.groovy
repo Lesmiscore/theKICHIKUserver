@@ -9,6 +9,8 @@ import cn.nukkit.item.ItemTool
  * Created by nao on 2017/02/20.
  */
 class LemiHellCobweb extends BlockCobweb{
+    LemiHellCobweb(int meta=0){super(meta)}
+
     @Override
     boolean hasEntityCollision() {
         true

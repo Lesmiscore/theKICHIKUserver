@@ -10,6 +10,8 @@ import com.nao20010128nao.Fiendish.level.UnpreventableExplosion
  * Created by nao on 2017/02/21.
  */
 class LemiHellRedstoneOre extends BlockOreRedstone{
+    LemiHellRedstoneOre(int meta=0){super(meta)}
+
     @Override
     boolean onBreak(Item item) {
         // TODO: This shouldn't happen always, but sometimes.
