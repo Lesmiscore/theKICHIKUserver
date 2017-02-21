@@ -12,6 +12,16 @@ import com.nao20010128nao.Fiendish.blocks.LemiHellEmeraldOre
 import com.nao20010128nao.Fiendish.blocks.LemiHellGlass
 import com.nao20010128nao.Fiendish.blocks.LemiHellGlassPane
 import com.nao20010128nao.Fiendish.blocks.LemiHellGlowingRedstoneOre
+import com.nao20010128nao.Fiendish.blocks.LemiHellGold
+import com.nao20010128nao.Fiendish.blocks.LemiHellGoldOre
+import com.nao20010128nao.Fiendish.blocks.LemiHellIron
+import com.nao20010128nao.Fiendish.blocks.LemiHellIronOre
+import com.nao20010128nao.Fiendish.blocks.LemiHellLapis
+import com.nao20010128nao.Fiendish.blocks.LemiHellLeaves
+import com.nao20010128nao.Fiendish.blocks.LemiHellLeaves2
+import com.nao20010128nao.Fiendish.blocks.LemiHellMonsterSpawner
+import com.nao20010128nao.Fiendish.blocks.LemiHellRedstoneOre
+import com.nao20010128nao.Fiendish.blocks.LemiHellSapling
 
 // Use this name here used at the original plugin
 class LemiHell extends PluginBase implements Listener{
@@ -49,6 +59,15 @@ class LemiHell extends PluginBase implements Listener{
         blk.list[blk.GLASS_PANE]=LemiHellGlassPane.class
         blk.list[blk.GLOWING_REDSTONE_ORE]=LemiHellGlowingRedstoneOre.class
         blk.list[blk.GOLD_BLOCK]=LemiHellGold.class
+        blk.list[blk.GOLD_ORE]=LemiHellGoldOre.class
+        blk.list[blk.IRON_BLOCK]=LemiHellIron.class
+        blk.list[blk.IRON_ORE]=LemiHellIronOre.class
+        blk.list[blk.LAPIS_BLOCK]=LemiHellLapis.class
+        blk.list[blk.LEAVES]=LemiHellLeaves.class
+        blk.list[blk.LEAVES2]=LemiHellLeaves2.class
+        blk.list[blk.MONSTER_SPAWNER]=LemiHellMonsterSpawner.class
+        blk.list[blk.REDSTONE_ORE]=LemiHellRedstoneOre.class
+        blk.list[blk.SAPLING]=LemiHellSapling.class
         /* original code:
         blk::$list[blk::COAL_BLOCK           ]=\nao20010128nao\blocks\Coal               ::class;
         blk::$list[blk::COAL_ORE             ]=\nao20010128nao\blocks\CoalOre            ::class;
