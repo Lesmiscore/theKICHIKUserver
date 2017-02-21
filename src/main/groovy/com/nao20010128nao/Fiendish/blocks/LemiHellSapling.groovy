@@ -8,6 +8,7 @@ import cn.nukkit.level.Level
 import cn.nukkit.level.generator.object.tree.ObjectTree
 import cn.nukkit.math.NukkitRandom
 import com.nao20010128nao.Fiendish.PhpMethods
+import com.nao20010128nao.Fiendish.Utils
 
 /**
  * Created by nao on 2017/02/21.
@@ -31,7 +32,7 @@ class LemiHellSapling extends BlockSapling{
         if(item.id==Item.DYE & item.damage==0x0f){  // bonemeal
             if(PhpMethods.mt_rand(0,5)!=2)// less chance of growing
                 return false
-            ObjectTree.growTree(level,x as int,y as int,z as int,new NukkitRandom(PhpMethods.random.get().nextLong()),meta & 0x07)
+            ObjectTree.growTree(level,x as int,y as int,z as int,new NukkitRandom(Utils.random.get().nextLong()),meta & 0x07)
             if((player.gamemode & 0x01)==0){
                 item.count--
             }
@@ -56,7 +57,7 @@ class LemiHellSapling extends BlockSapling{
                     if((meta&0x08)==0x08){
                         if(PhpMethods.mt_rand(0,5)!=2)// less chance of growing
                             return Level.BLOCK_UPDATE_NORMAL
-                        ObjectTree.growTree(level,x as int,y as int,z as int,new NukkitRandom(PhpMethods.random.get().nextLong()),meta & 0x07)
+                        ObjectTree.growTree(level,x as int,y as int,z as int,new NukkitRandom(Utils.random.get().nextLong()),meta & 0x07)
                     }else{
                         meta|=0x08
                         level.setBlock(this,this,true)
