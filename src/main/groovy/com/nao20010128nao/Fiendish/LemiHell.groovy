@@ -17,6 +17,7 @@ import com.nao20010128nao.Fiendish.blocks.LemiHellGoldOre
 import com.nao20010128nao.Fiendish.blocks.LemiHellIron
 import com.nao20010128nao.Fiendish.blocks.LemiHellIronOre
 import com.nao20010128nao.Fiendish.blocks.LemiHellLapis
+import com.nao20010128nao.Fiendish.blocks.LemiHellLapisOre
 import com.nao20010128nao.Fiendish.blocks.LemiHellLeaves
 import com.nao20010128nao.Fiendish.blocks.LemiHellLeaves2
 import com.nao20010128nao.Fiendish.blocks.LemiHellMonsterSpawner
@@ -63,6 +64,7 @@ class LemiHell extends PluginBase implements Listener{
         blk.list[blk.IRON_BLOCK]=LemiHellIron.class
         blk.list[blk.IRON_ORE]=LemiHellIronOre.class
         blk.list[blk.LAPIS_BLOCK]=LemiHellLapis.class
+        blk.list[blk.LAPIS_ORE]=LemiHellLapisOre.class
         blk.list[blk.LEAVES]=LemiHellLeaves.class
         blk.list[blk.LEAVES2]=LemiHellLeaves2.class
         blk.list[blk.MONSTER_SPAWNER]=LemiHellMonsterSpawner.class

@@ -4,6 +4,7 @@ import cn.nukkit.block.BlockCoal
 import cn.nukkit.item.Item
 import cn.nukkit.item.ItemTool
 import com.nao20010128nao.Fiendish.PhpMethods
+import com.nao20010128nao.Fiendish.Utils
 
 /**
  * Created by nao on 2017/02/20.
@@ -11,20 +12,6 @@ import com.nao20010128nao.Fiendish.PhpMethods
 class LemiHellCoal extends BlockCoal {
     @Override
     int[][] getDrops(Item item) {
-        if(item.tier>= ItemTool.TIER_WOODEN){
-            def rand=PhpMethods.mt_rand(0,9)
-            def data
-            switch(rand){
-                case 9:
-                    data=[Item.COAL_BLOCK,0,1]
-                    break
-                default:
-                    data=[Item.COAL,0,rand]
-                    break
-            }
-            return [data]
-        }else{
-            return []
-        }
+        Utils.createJewelryBlockDrops(item,ItemTool.TIER_WOODEN,Item.COAL)
     }
 }

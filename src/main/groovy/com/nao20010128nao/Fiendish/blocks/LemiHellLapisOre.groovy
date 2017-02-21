@@ -4,6 +4,7 @@ import cn.nukkit.block.BlockOreLapis
 import cn.nukkit.item.Item
 import cn.nukkit.item.ItemTool
 import com.nao20010128nao.Fiendish.PhpMethods
+import com.nao20010128nao.Fiendish.Utils
 
 /**
  * Created by nao on 2017/02/21.
@@ -11,22 +12,10 @@ import com.nao20010128nao.Fiendish.PhpMethods
 class LemiHellLapisOre extends BlockOreLapis{
     @Override
     int[][] getDrops(Item item) {
-        if(item.tier>= ItemTool.TIER_STONE){
-            def rand=PhpMethods.mt_rand(1,20)
-            def amount=1
-            switch (rand){
-                case 2:
-                    amount=2
-                    break
-                case 3:
-                    amount=1000
-                    break
-            }
-            return [
-                    [Item.DYE, 4, PhpMethods.mt_rand(4, 8)*amount]
-            ]
-        }else{
-            return []
+        def drops=Utils.createOreDrops(item,ItemTool.TIER_STONE,Item.DYE,4)
+        if(drops.length>0){
+            drops[0][2]*=PhpMethods.mt_rand(4, 8)
         }
+        return drops
     }
 }
